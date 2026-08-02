@@ -1,0 +1,40 @@
+# Node modules
+node_modules/
+frontend/node_modules/
+backend/venv/
+venv/
+
+# Environment files
+.env
+*.env
+*.env.local
+
+# Database files
+*.db
+*.sqlite
+skill_platform.db
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build files
+dist/
+build/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker
+*.pid
