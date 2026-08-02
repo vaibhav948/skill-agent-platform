@@ -8,10 +8,17 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Skill Agent Platform", version="1.0.0")
 
-# CORS middleware
+# ✅ Updated CORS middleware - Allow all origins for production
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Frontend URL
+    allow_origins=[
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "https://skill-frontend.vercel.app",
+        "https://skill-frontend.vercel.app/",
+        "https://*.vercel.app",
+        "*"  # ✅ Allow all for production (you can restrict later)
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
