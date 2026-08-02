@@ -514,7 +514,6 @@ docker-compose up --build
 
 ## ⚠️ Known Limitations
 
-- Single user (no authentication - intentionally excluded)
 - SQLite database (not production scale)
 - Hardcoded knowledge base for document search
 - Gemini API rate limits (250 requests/day free tier)
