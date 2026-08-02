@@ -6,7 +6,11 @@ A dynamic user-defined skills agent platform where users can create reusable AI 
 
 ## 🚀 Live Demo
 
-[Add your deployed URL here once deployed]
+**Frontend:** https://skill-frontend.vercel.app
+
+**Backend API:** https://skill-backend-192p.onrender.com
+
+**API Documentation:** https://skill-backend-192p.onrender.com/docs
 
 ---
 
@@ -202,10 +206,245 @@ frontend/src/
 
 | Tool | Description 
 |------|-------------
-| **Calculator** | Perform mathematical calculations 
+| **Calculator** | Perform mathematical calculations
 | **Document Search** | Search through QA standards knowledge base 
 | **Record Lookup** | Look up records by ID 
 | **Mock Task** | Create, list, and update tasks 
+
+---
+
+## 🧪 Sample Skill Configurations
+
+### 1. Calculator Skill
+
+**Input Schema:**
+```json
+{
+  "type": "object",
+  "properties": {
+    "expression": {
+      "type": "string",
+      "description": "Mathematical expression to calculate (e.g., '25 + 30')"
+    }
+  },
+  "required": ["expression"]
+}
+```
+
+**Output Schema:**
+```json
+{
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "number",
+      "description": "The calculated result"
+    }
+  }
+}
+```
+
+**Test Input:**
+```json
+{"expression": "25 + 30"}
+```
+
+**Expected Output:**
+```json
+{"result": 55}
+```
+
+---
+
+### 2. Document Search Skill
+
+**Input Schema:**
+```json
+{
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "Search query to find relevant documentation"
+    }
+  },
+  "required": ["query"]
+}
+```
+
+**Output Schema:**
+```json
+{
+  "type": "object",
+  "properties": {
+    "results": {
+      "type": "array",
+      "description": "List of matching documents"
+    },
+    "message": {
+      "type": "string",
+      "description": "Status message"
+    }
+  }
+}
+```
+
+**Test Input:**
+```json
+{"query": "api_testing"}
+```
+
+**Expected Output:**
+```json
+{
+  "results": [
+    {
+      "topic": "API Testing",
+      "content": "API testing guidelines for endpoints...",
+      "relevance": 0.9
+    }
+  ]
+}
+```
+
+---
+
+### 3. Record Lookup Skill
+
+**Input Schema:**
+```json
+{
+  "type": "object",
+  "properties": {
+    "record_id": {
+      "type": "string",
+      "description": "ID of the record to look up (e.g., user_123, product_001)"
+    }
+  },
+  "required": ["record_id"]
+}
+```
+
+**Output Schema:**
+```json
+{
+  "type": "object",
+  "properties": {
+    "found": {
+      "type": "boolean",
+      "description": "Whether the record was found"
+    },
+    "record": {
+      "type": "object",
+      "description": "The record data if found"
+    },
+    "message": {
+      "type": "string",
+      "description": "Status message"
+    }
+  }
+}
+```
+
+**Test Input:**
+```json
+{"record_id": "user_123"}
+```
+
+**Expected Output:**
+```json
+{
+  "found": true,
+  "record": {
+    "name": "John Doe",
+    "email": "john@example.com",
+    "role": "admin"
+  }
+}
+```
+
+---
+
+### 4. Mock Task Creator Skill
+
+**Input Schema:**
+```json
+{
+  "type": "object",
+  "properties": {
+    "action": {
+      "type": "string",
+      "enum": ["create", "list", "update"],
+      "description": "Action to perform: create, list, or update"
+    },
+    "title": {
+      "type": "string",
+      "description": "Task title (required for create action)"
+    },
+    "description": {
+      "type": "string",
+      "description": "Task description (optional)"
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["low", "medium", "high"],
+      "description": "Task priority"
+    },
+    "task_id": {
+      "type": "string",
+      "description": "Task ID (required for update action)"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["created", "in_progress", "completed"],
+      "description": "Task status (for update action)"
+    }
+  },
+  "required": ["action"]
+}
+```
+
+**Output Schema:**
+```json
+{
+  "type": "object",
+  "properties": {
+    "success": {
+      "type": "boolean",
+      "description": "Whether the operation was successful"
+    },
+    "task": {
+      "type": "object",
+      "description": "The task object (for create/update)"
+    },
+    "tasks": {
+      "type": "array",
+      "description": "List of tasks (for list action)"
+    },
+    "message": {
+      "type": "string",
+      "description": "Status message"
+    }
+  }
+}
+```
+
+**Test Inputs:**
+
+Create a task (requires approval):
+```json
+{"action": "create", "title": "Review PR", "description": "Review the new API changes", "priority": "high"}
+```
+
+List tasks (no approval needed):
+```json
+{"action": "list"}
+```
+
+Update a task (requires approval):
+```json
+{"action": "update", "task_id": "task_1", "status": "completed"}
+```
 
 ---
 
@@ -218,6 +457,7 @@ frontend/src/
    - Fill in name, purpose, instructions
    - Select allowed tools
    - Set status (draft/published)
+   - Use the schemas above as reference
 
 2. **Test a Skill**:
    - Click "Test" on any skill
@@ -233,25 +473,6 @@ frontend/src/
    - Go to History page
    - See all executions with status
    - Click "Show Details" for logs
-
-### Sample Test Inputs
-
-```json
-// Calculator
-{"expression": "25 + 30"}
-
-// Document Search
-{"query": "api_testing"}
-
-// Record Lookup
-{"record_id": "user_123"}
-
-// Mock Task - Create
-{"action": "create", "title": "Test Task"}
-
-// Mock Task - List
-{"action": "list"}
-```
 
 ---
 
@@ -291,3 +512,20 @@ docker-compose up --build
 
 ---
 
+## ⚠️ Known Limitations
+
+- Single user (no authentication - intentionally excluded)
+- SQLite database (not production scale)
+- Hardcoded knowledge base for document search
+- Gemini API rate limits (250 requests/day free tier)
+
+
+---
+
+## 🙏 Acknowledgments
+
+Built as a submission for the AGGROSO assignment - Option B (Hard Difficulty).
+
+---
+
+**For any questions, please refer to the assignment email from AGGROSO.**
