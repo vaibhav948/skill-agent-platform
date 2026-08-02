@@ -200,12 +200,12 @@ frontend/src/
 
 ## 🛠️ Available Tools
 
-| Tool | Description | Requires Approval |
-|------|-------------|-------------------|
-| **Calculator** | Perform mathematical calculations | ❌ No |
-| **Document Search** | Search through QA standards knowledge base | ❌ No |
-| **Record Lookup** | Look up records by ID | ❌ No |
-| **Mock Task** | Create, list, and update tasks | ✅ Yes (create/update) |
+| Tool | Description 
+|------|-------------
+| **Calculator** | Perform mathematical calculations 
+| **Document Search** | Search through QA standards knowledge base 
+| **Record Lookup** | Look up records by ID 
+| **Mock Task** | Create, list, and update tasks 
 
 ---
 
@@ -291,37 +291,3 @@ docker-compose up --build
 
 ---
 
-## ⚠️ Known Limitations
-
-- Single user (no authentication - intentionally excluded)
-- SQLite database (not production scale)
-- Hardcoded knowledge base for document search
-- Gemini API rate limits (250 requests/day free tier)
-- No skill import/export functionality
-
----
-
-## 📝 Intentionally Left Out
-
-- User authentication (not specified in requirements)
-- Multi-user support
-- Advanced error recovery
-- Skill templates
-- API rate limiting
-- Production database (PostgreSQL)
-
----
-
-## 📄 License
-
-MIT
-
----
-
-## 🙏 Acknowledgments
-
-Built as a submission for the AGGROSO assignment - Option B (Hard Difficulty).
-
----
-
-**For any questions, please refer to the assignment email from AGGROSO.**
